@@ -31,6 +31,7 @@ if (isset($_GET['action'])) {
             break;
         case "up-qtt":
             header("Location:recap.php");
+            $_SESSION['products']['qtt'] = 10;
             break;
         case "down-qtt":
             header("Location:recap.php");
