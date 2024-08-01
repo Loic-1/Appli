@@ -3,8 +3,8 @@
 session_start();
 
 if (isset($_POST['submit'])) {
-    // $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
-    $name = htmlspecialchars("name" ?? '');
+    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+    // $name = htmlspecialchars("name" ?? '');
     $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
@@ -23,11 +23,16 @@ if (isset($_POST['submit'])) {
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case "clear":
-            session_destroy();// ou unset($_SESSION['products']);
+            unset($_SESSION['products']);
             header("Location:recap.php");
             break;
         case "delete":
-            unset($_SESSION['products'][$index]);
+            foreach($_SESSION['products'] as $index => $product) {
+                if ('id' == $index){
+                    unset($_SESSION['products']['id']);
+                    exit;
+                }
+            }
             header("Location:recap.php");
             break;
         case "up-qtt":
@@ -35,11 +40,15 @@ if (isset($_GET['action'])) {
             header("Location:recap.php");
             exit;
         case "down-qtt":
-            if($_SESSION['products'][$index]['qtt']>1){
+            if($_SESSION['products'][$index]['qtt'] > 1){
                 $_SESSION['products'][$index]['qtt']--;
             }
             else{
-                //delete at index
+                foreach($_SESSION['products'] as $index => $product){
+                    if('id' == $index){
+                        unset($_SESSION['product'][$index]);//supprime la ligne du panier si qtt == 0
+                    }
+                }
             }
             header("Location:recap.php");
             break;
