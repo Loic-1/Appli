@@ -15,12 +15,15 @@ session_start();
 
 <body>
     <?php require_once('header.php'); ?>
-    <div id="count">Produits dans le panier : 1</div>
+    
     <div class="body">
         <?php
         if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
+            echo '<div class="pas_de_produit">';
             echo "<p>Aucun produit en session...</p>";
+            echo '</div>';
         } else {
+            echo '<div class="table_container">';
             echo    '<table id="table">',
             "<thead>",
             "<tr>",
@@ -33,6 +36,7 @@ session_start();
             "</thead>",
             "<tbody>";
             $totalGeneral = 0;
+            $totalProduits = 0;
             foreach ($_SESSION['products'] as $index => $product) {
                 echo    '<tr class="order">',
                 "<td>" . $index . "</td>",
@@ -43,13 +47,18 @@ session_start();
                 '<td><a href="traitement.php?action=delete&id='.$index.'"><i class="fa-solid fa-trash"></i></a></td>',
                 "</tr>";
                 $totalGeneral += $product['total'];
+                $totalProduits += $product['qtt'];
             }
             echo        "<tr>",
             "<td colspan=4>Total général : </td>",
             "<td><strong>" . number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€</strong></td>",
             "</tr>",
+            "<tr>",
+            "<td colspan=6>Produits dans le panier : $totalProduits</td>",
+            "</tr>",
             "</tbody>",
             "</table>";
+            echo '</div>';
         }
         // session_destroy();
         ?>

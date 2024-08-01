@@ -27,16 +27,19 @@ if (isset($_GET['action'])) {
             session_destroy();
             break;
         case "delete":
+            header("Location:recap.php");
             break;
         case "up-qtt":
+            header("Location:recap.php");
             break;
         case "down-qtt":
+            header("Location:recap.php");
             break;
     }
 }
 
 // header("Location:index.php");
-echo "<SCRIPT type='text/javascript'>";
-echo "alert('szss')";
-echo "updateCount()";
-echo "</SCRIPT>";
+echo "<SCRIPT type='text/javascript'>",
+"window.alert('szss');",
+"window.location.href='index.php';",
+"</SCRIPT>";
