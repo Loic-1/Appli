@@ -20,4 +20,23 @@ if (isset($_POST['submit'])) {
     }
 }
 
-header("Location:index.php");
+if (isset($_GET['action'])) {
+    switch ($_GET['action']) {
+        case "clear":
+            header("Location:recap.php");
+            session_destroy();
+            break;
+        case "delete":
+            break;
+        case "up-qtt":
+            break;
+        case "down-qtt":
+            break;
+    }
+}
+
+// header("Location:index.php");
+echo "<SCRIPT type='text/javascript'>";
+echo "alert('szss')";
+echo "updateCount()";
+echo "</SCRIPT>";
