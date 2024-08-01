@@ -12,7 +12,9 @@
     <?php require_once('header.php'); ?>
     <div class="body">
         <div class="forms">
-            <h1>Ajouter un produit</h1>
+            <div title="Tooltip">
+                <h1>Ajouter un produit</h1>
+            </div>
             <form action="traitement.php" method="post" class="main_forms">
                 <p>
                     <label>
