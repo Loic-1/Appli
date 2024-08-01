@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
             header("Location:recap.php");
             break;
         case "delete":
-            // unset($_SESSION['products']['id']);
+            unset($_SESSION['products'][$index]);
             header("Location:recap.php");
             break;
         case "up-qtt":
@@ -35,8 +35,8 @@ if (isset($_GET['action'])) {
             header("Location:recap.php");
             exit;
         case "down-qtt":
-            if($_SESSION['products']['qtt']>1){
-                $_SESSION['products']['qtt']['id']--;
+            if($_SESSION['products'][$index]['qtt']>1){
+                $_SESSION['products'][$index]['qtt']--;
             }
             else{
                 //delete at index

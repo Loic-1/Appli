@@ -10,7 +10,6 @@
 
 <body>
     <?php require_once('header.php'); ?>
-    <div id="count">Produits dans le panier : 1</div>
     <div class="body">
         <div class="forms">
             <h1>Ajouter un produit</h1>
@@ -39,7 +38,6 @@
             </form>
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
 
 </html>

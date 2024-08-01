@@ -54,7 +54,7 @@ session_start();
             "<td><strong>" . number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€</strong></td>",
             "</tr>",
             "<tr>",
-            "<td colspan=6>Produits dans le panier : $totalProduits</td>",
+            "<td colspan=6>Produits dans le panier : $totalProduits</td>",//Produits dans le panier : $totalProduits
             "</tr>",
             "</tbody>",
             "</table>";
@@ -63,6 +63,16 @@ session_start();
         // session_destroy();
         ?>
         <div class="clear">
+        <!--
+        <?php 
+        // if($totalProduits >= 1){
+        //     echo "<p>Produits dans le panier : $totalProduits</p>"; 
+        // }
+        // else{
+
+        // }
+        ?>
+        -->
             <a href="traitement.php?action=clear">
                 <i class="fa-solid fa-trash"></i>
             </a>
