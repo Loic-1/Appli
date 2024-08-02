@@ -3,7 +3,7 @@
 session_start();
 
 if (isset($_POST['submit'])) {
-    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);//DEPRECATDED ???
     // $name = htmlspecialchars("name" ?? '');
     $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
@@ -20,30 +20,23 @@ if (isset($_POST['submit'])) {
     }
 }
 
-if (isset($_GET['action'])) {
+if (isset($_GET['action']) && isset($_GET['id'])) {
+    $index = $_GET['id'];
     switch ($_GET['action']) {
         case "clear":
             unset($_SESSION['products']);
             header("Location:recap.php");
             break;
         case "delete":
-            // foreach ($_SESSION['products'] as $index => $product) {
-            //     if ('id' == $index) {
-            //         unset($_SESSION['products']['id']);
-            //         exit;
-            //     }
-            // }
-            if (isset($_SESSION['products']['id'])) {
-                unset($_SESSION['products']['id']);
-                // Re-index the array to maintain consistency
-                $_SESSION['products'] = array_values($_SESSION['products']);
+            if (isset($_SESSION['products'][$index])) {
+                unset($_SESSION['products'][$index]);
             }
             header("Location:recap.php");
             exit;
         case "up-qtt":
-            if (isset($_SESSION['products']['id'])) {
-                $_SESSION['products']['id']['qtt']++;
-                $_SESSION['products']['id']['total'] = $_SESSION['products']['id']['price'] * $_SESSION['products']['id']['qtt'];
+            if (isset($_SESSION['products'][$index])) {
+                $_SESSION['products'][$index]['qtt']++;
+                $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['price'] * $_SESSION['products'][$index]['qtt']; //update car qtt++
             }
             header("Location:recap.php");
             exit;
@@ -59,7 +52,16 @@ if (isset($_GET['action'])) {
             // }
             // header("Location:recap.php");
             // break;
-
+            if (isset($_SESSION['products'][$index])) {
+                if ($_SESSION['products'][$index]['qtt'] > 1) {
+                    $_SESSION['products'][$index]['qtt']--;
+                    $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['price'] * $_SESSION['products'][$index]['qtt']; //update car qtt++
+                } else {
+                    unset($_SESSION['products'][$index]); //qtt = 0 => ligne peut disparaître
+                }
+            }
+            header("Location:recap.php");
+            break;
     }
 }
 
