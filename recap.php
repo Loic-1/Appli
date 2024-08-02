@@ -42,7 +42,7 @@ session_start();
                 "<td>" . $index . "</td>",
                 "<td>" . $product['name'] . "</td>",
                 "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
-                '<td><a href="traitement.php?action=up-qtt&id=' . $index . '"><i class="fa-solid fa-plus"></i></a>' . $product['qtt'] . '<a href="traitement.php?action=down-qtt&id=' . $index . '"><i class="fa-solid fa-minus"></i></a></td>',
+                '<td class="qtt_changer"><a href="traitement.php?action=up-qtt&id=' . $index . '"><i class="fa-solid fa-plus"></i></a>' . $product['qtt'] . '<a href="traitement.php?action=down-qtt&id=' . $index . '"><i class="fa-solid fa-minus"></i></a></td>',
                 "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                 '<td><a href="traitement.php?action=delete&id=' . $index . '"><i class="fa-solid fa-trash"></i></a></td>',
                 "</tr>";

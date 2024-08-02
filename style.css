@@ -1,3 +1,70 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: aquamarine;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  filter: brightness(0.9);
+}
+
+/*header.php*/
+
+.header {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: aquamarine;
+  border-bottom: 2px solid rgb(30, 207, 207);
+}
+
+.header a {
+  padding: 1rem;
+  border: 1px solid rgb(30, 207, 207);
+  border-radius: 10px;
+  background-color: aqua;
+  font-weight: 800;
+}
+
+/*index.php*/
+
+.forms,
+.main_forms {
+  width: max-content;
+}
+
+.forms {
+  display: grid;
+  justify-items: end;
+  row-gap: 1.5rem;
+  margin: 2rem 1rem 2rem 1rem;
+}
+
+.main_forms {
+  display: grid;
+  justify-items: end;
+  row-gap: 1rem;
+}
+
+input {
+  height: 25px;
+  background-color: aqua;
+  border: 1px solid rgb(30, 207, 207);
+}
+
+/*recap.php*/
 table,
 td,
 th {
@@ -5,10 +72,42 @@ th {
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
+  margin: 1rem;
 }
 
-td, th{
-    padding: 1rem;
-    text-align: center;
+.table_container {
+  display: flex;
+  justify-content: center;
+}
+
+td,
+th {
+  padding: 1rem;
+  text-align: center;
+}
+
+/* .qtt_changer{
+    display: flex;
+    justify-content: space-between;
+} */
+
+.pas_de_produit {
+  text-align: center;
+}
+
+.clear_container {
+  display: flex;
+  justify-content: center;
+}
+
+.clear {
+  display: flex;
+  font-size: 20px;
+  gap: 1rem;
+}
+
+.pas_de_produit,
+.clear_container {
+  margin: 0.5rem;
 }

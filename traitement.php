@@ -17,6 +17,7 @@ if (isset($_POST['submit'])) {
         ];
 
         $_SESSION['products'][] = $product;
+        $_SESSION['message'] = "Le produit a été ajouté avec succès!!";
     }
 }
 
@@ -28,7 +29,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             header("Location:recap.php");
             break;
         case "delete":
-            if (isset($_SESSION['products'][$index])) {
+            if (isset($_SESSION['products'][$index])) {//isset() regarde si une variable est déclarée et non NULL
                 unset($_SESSION['products'][$index]);
             }
             header("Location:recap.php");
@@ -65,8 +66,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     }
 }
 
-// header("Location:index.php");
-echo "<SCRIPT type='text/javascript'>";
-echo "window.location.href='index.php';";
-echo "window.alert('szss');";
-echo "</SCRIPT>";
+header("Location:index.php");
+// echo "<SCRIPT type='text/javascript'>";
+// echo "window.location.href='index.php';";
+// echo "window.alert('szss');";
+// echo "</SCRIPT>";

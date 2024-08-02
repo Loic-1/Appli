@@ -10,6 +10,16 @@
 
 <body>
     <?php require_once('header.php'); ?>
+    <?php
+    session_start();
+    if (isset($_SESSION['message'])) {
+        echo '<div id="info-message">' . $_SESSION['message'] . '</div>';
+        unset($_SESSION['message']);
+        // echo "<script>",
+        // 'alert('.$_SESSION['message'].');',
+        // "</script>";
+    }
+    ?>
     <div class="body">
         <div class="forms">
             <div title="Tooltip">
@@ -40,6 +50,16 @@
             </form>
         </div>
     </div>
+    <script>
+        // https://stackoverflow.com/questions/5988909/php-echo-message-for-a-specified-amount-of-time
+        setTimeout(function() {
+            document.getElementById('info-message').style.display = 'none';
+            /* or
+            var item = document.getElementById('info-message')
+            item.parentNode.removeChild(item); 
+            */
+        }, 5000);
+    </script>
 </body>
 
 </html>
