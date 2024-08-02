@@ -10,17 +10,17 @@
 
 <body>
     <?php require_once('header.php'); ?>
-    <?php
-    session_start();
-    if (isset($_SESSION['message'])) {
-        echo '<div id="info-message">' . $_SESSION['message'] . '</div>';
-        unset($_SESSION['message']);
-        // echo "<script>",
-        // 'alert('.$_SESSION['message'].');',
-        // "</script>";
-    }
-    ?>
     <div class="body">
+        <?php
+        session_start();
+        if (isset($_SESSION['message'])) {
+            echo '<div id="info-message">' . $_SESSION['message'] . '</div>';
+            unset($_SESSION['message']);
+            // echo "<script>",
+            // 'alert('.$_SESSION['message'].');',
+            // "</script>";
+        }
+        ?>
         <div class="forms">
             <div title="Tooltip">
                 <h1>Ajouter un produit</h1>
@@ -58,7 +58,7 @@
             var item = document.getElementById('info-message')
             item.parentNode.removeChild(item); 
             */
-        }, 5000);
+        }, 10000);
     </script>
 </body>
 
