@@ -14,27 +14,37 @@ if (isset($_GET['action'])) {
                 // 
                 // PHOTO
 
-                // if (isset($_FILES['file'])) {
-                //     $tmpName = $_FILES['file']['tmp_name'];
-                //     $nameP = $_FILES['file']['name'];
-                //     $size = $_FILES['file']['size'];
-                //     $error = $_FILES['file']['error'];
+                require './bdd.php';
 
-                //     $tabextension = explode('.', $nameP);
-                //     $extension = strtolower(end($tabextension));
-                //     $extensions = ['jpg', 'png', 'jpeg', 'gif'];
-                //     $maxSize = 400000;
+                if (isset($_FILES['file'])) {
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $name = $_FILES['file']['name'];
+                    $size = $_FILES['file']['size'];
+                    $error = $_FILES['file']['error'];
 
-                //     if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
-                //         $uniqueName = uniqid('', true);
-                //         $file = $uniqueName . '.' . $extension;
-                //         move_uploaded_file($tmpName, './upload/' . $nameP);
-                //         $req = $db->prepare('INSERT INTO file (name) VALUES (?)');
-                //         $req->execute([$file]);
-                //     } else {
-                //         echo 'mauvaise extension';
-                //     }
-                // }
+                    $tabExtension = explode('.', $name);
+                    $extension = strtolower(end($tabExtension));
+
+                    $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+                    $maxSize = 400000;
+
+                    if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
+
+                        $uniqueName = uniqid('', true);
+                        //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
+                        $file = $uniqueName . "." . $extension;
+                        //$file = 5f586bf96dcd38.73540086.jpg
+
+                        move_uploaded_file($tmpName, './upload/' . $file);
+
+                        $req = $db->prepare('INSERT INTO file (name) VALUES (?)');
+                        $req->execute([$file]);
+
+                        echo "Image enregistrée";
+                    } else {
+                        echo "Une erreur est survenue";
+                    }
+                }
 
                 // PHOTO
                 // 

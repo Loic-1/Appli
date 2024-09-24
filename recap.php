@@ -70,6 +70,17 @@ session_start();
                 Clear Order
             </a>
         </div>
+
+        <h2>Mes images</h2>
+        <?php
+        require './bdd.php';
+        $req = $db->query('SELECT name FROM file');
+        while ($data = $req->fetch()) {
+            echo "<img src='./upload/" . $data['name'] . "' width='300px' ><br>";
+        }
+        ?>
+
+
     </div>
 </body>
 
