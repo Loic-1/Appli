@@ -71,7 +71,7 @@ session_start();
             </a>
         </div>
 
-        <h2>Mes images</h2>
+        <!-- FONCTIONNE -->
         <?php
         require './bdd.php';
         $req = $db->query('SELECT name FROM file');

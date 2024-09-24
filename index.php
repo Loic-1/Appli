@@ -60,8 +60,6 @@
         </div>
     </div>
 
-    
-
     <script>
         // https://stackoverflow.com/questions/5988909/php-echo-message-for-a-specified-amount-of-time
         setTimeout(function() {
