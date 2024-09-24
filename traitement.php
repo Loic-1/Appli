@@ -13,6 +13,29 @@ if (isset($_GET['action'])) {
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
                 $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                // 
+                // PHOTO
+
+                var_dump($_FILES);
+                if (isset($_FILES['file'])) {
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $name = $_FILES['file']['name'];
+                    $size = $_FILES['file']['size'];
+                    $error = $_FILES['file']['error'];
+
+                    $tabextension = explode('.', $name);
+                    $extension = strtolower(end($tabextension));
+                    $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+
+                    if (in_array($extension, $extensions)) {
+                        move_uploaded_file($tmpName, './upload/' . $name);
+                    } else {
+                        echo 'mauvaise extension';
+                    }
+                }
+
+                // PHOTO
+                // 
 
                 if ($name && $price && $qtt && $description) {
                     $product = [

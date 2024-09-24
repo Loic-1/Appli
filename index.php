@@ -25,34 +25,34 @@
             <form action="traitement.php?action=add" method="post" class="main_forms" enctype="multipart/form-data"> <!-- enctype -->
                 <p>
                     <label>
-                        Nom du produit :
+                        Nom du produit : *
                         <input type="text" name="name" class="color">
                     </label>
                 </p>
                 <p>
                     <label>
-                        Prix du produit :
+                        Prix du produit : *
                         <input type="number" step="any" name="price" min="0" class="color">
                     </label>
                 </p>
                 <p>
                     <label>
-                        Quantité désirée :
+                        Quantité désirée : *
                         <input type="number" name="qtt" value="1" min="0" class="color">
                     </label>
                 </p>
                 <p>
                     <label for="description">
-                        Description
+                        Description *
                     </label>
                     <textarea name="description" id="description" class="color"></textarea><!--color-->
                 </p>
                 <p>
-                    <label for="photo">Photo</label>
-                    <input type="file" name="photo">
+                    <label for="file">Photo</label>
+                    <input type="file" name="file">
                 </p>
                 <p>
-                    <input type="submit" name="submit" value="Ajouter le produit" class="submit">
+                    <input type="submit" name="submit" value="Ajouter le produit" class="submit" class="color">
                 </p>
             </form>
         </div>
