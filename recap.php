@@ -15,7 +15,6 @@ session_start();
 
 <body>
     <?php require_once('header.php'); ?>
-
     <div class="body">
         <?php
         if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
@@ -33,6 +32,7 @@ session_start();
             "<th>Quantité</th>",
             "<th>Total</th>",
             "<th>Description</th>",
+            "<th>Photo</th>",
             "<th>Dlt</th>",
             "</tr>",
             "</thead>",
@@ -47,6 +47,7 @@ session_start();
                 '<td class="qtt_changer"><a href="traitement.php?action=up-qtt&id=' . $index . '"><i class="fa-solid fa-plus"></i></a>' . $product['qtt'] . '<a href="traitement.php?action=down-qtt&id=' . $index . '"><i class="fa-solid fa-minus"></i></a></td>',
                 "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                 "<td>" . $product['description'] . "</td>",
+                "<td>" . 'placerholder' . "</td>",
                 '<td><a href="traitement.php?action=delete&id=' . $index . '"><i class="fa-solid fa-trash"></i></a></td>',
                 "</tr>";
                 $totalGeneral += $product['total'];
@@ -63,18 +64,7 @@ session_start();
             "</table>";
             echo '</div>';
         }
-        // session_destroy();
         ?>
-        <!--
-        <?php
-        // if($totalProduits >= 1){
-        //     echo "<p>Produits dans le panier : $totalProduits</p>"; 
-        // }
-        // else{
-
-        // }
-        ?>
-        -->
         <div class="clear_container">
             <a href="traitement.php?action=clear" class="clear">
                 Clear Order

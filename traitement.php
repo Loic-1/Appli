@@ -2,8 +2,6 @@
 
 session_start();
 
-
-
 if (isset($_GET['action'])) {
     $index = isset($_GET['id']) ? $_GET["id"] : "";
     switch ($_GET['action']) {
@@ -16,23 +14,27 @@ if (isset($_GET['action'])) {
                 // 
                 // PHOTO
 
-                var_dump($_FILES);
-                if (isset($_FILES['file'])) {
-                    $tmpName = $_FILES['file']['tmp_name'];
-                    $name = $_FILES['file']['name'];
-                    $size = $_FILES['file']['size'];
-                    $error = $_FILES['file']['error'];
+                // if (isset($_FILES['file'])) {
+                //     $tmpName = $_FILES['file']['tmp_name'];
+                //     $nameP = $_FILES['file']['name'];
+                //     $size = $_FILES['file']['size'];
+                //     $error = $_FILES['file']['error'];
 
-                    $tabextension = explode('.', $name);
-                    $extension = strtolower(end($tabextension));
-                    $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+                //     $tabextension = explode('.', $nameP);
+                //     $extension = strtolower(end($tabextension));
+                //     $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+                //     $maxSize = 400000;
 
-                    if (in_array($extension, $extensions)) {
-                        move_uploaded_file($tmpName, './upload/' . $name);
-                    } else {
-                        echo 'mauvaise extension';
-                    }
-                }
+                //     if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
+                //         $uniqueName = uniqid('', true);
+                //         $file = $uniqueName . '.' . $extension;
+                //         move_uploaded_file($tmpName, './upload/' . $nameP);
+                //         $req = $db->prepare('INSERT INTO file (name) VALUES (?)');
+                //         $req->execute([$file]);
+                //     } else {
+                //         echo 'mauvaise extension';
+                //     }
+                // }
 
                 // PHOTO
                 // 
