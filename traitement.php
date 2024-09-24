@@ -2,38 +2,48 @@
 
 session_start();
 
-if (isset($_POST['submit'])) {
-    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);//DEPRECATDED ???
-    // $name = htmlspecialchars("name" ?? '');
-    $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
-    if ($name && $price && $qtt) {
-        $product = [
-            "name" => $name,
-            "price" => $price,
-            "qtt" => $qtt,
-            "total" => $price * $qtt,
-        ];
 
-        $_SESSION['products'][] = $product;
-        $_SESSION['message'] = "Le produit a été ajouté avec succès!!";
-    }
-}
-
-if (isset($_GET['action']) && isset($_GET['id'])) {
-    $index = $_GET['id'];
+if (isset($_GET['action'])) {
+    $index = isset($_GET['id']) ? $_GET["id"] : "";
     switch ($_GET['action']) {
+        case "add":
+            if (isset($_POST['submit'])) {
+                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
+                $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                if ($name && $price && $qtt && $description) {
+                    $product = [
+                        "name" => $name,
+                        "price" => $price,
+                        "qtt" => $qtt,
+                        "total" => $price * $qtt,
+                        "description" => $description,
+                    ];
+
+                    $_SESSION['products'][] = $product;
+                    $_SESSION['message'] = "Le produit a été ajouté avec succès!!";
+                }
+
+                header("Location:index.php");
+                exit;
+            }
+            break;
         case "clear":
             unset($_SESSION['products']);
             header("Location:recap.php");
+            exit;
             break;
         case "delete":
-            if (isset($_SESSION['products'][$index])) {//isset() regarde si une variable est déclarée et non NULL
+            if (isset($_SESSION['products'][$index])) { //isset() regarde si une variable est déclarée et non NULL
                 unset($_SESSION['products'][$index]);
             }
+
             header("Location:recap.php");
             exit;
+            break;
         case "up-qtt":
             if (isset($_SESSION['products'][$index])) {
                 $_SESSION['products'][$index]['qtt']++;
@@ -41,18 +51,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             }
             header("Location:recap.php");
             exit;
+            break;
         case "down-qtt":
-            // if ($_SESSION['products'][$index]['qtt'] > 1) {
-            //     $_SESSION['products'][$index]['qtt']--;
-            // } else {
-            //     foreach ($_SESSION['products'] as $index => $product) {
-            //         if ('id' == $index) {
-            //             unset($_SESSION['product'][$index]); //supprime la ligne du panier si qtt == 0
-            //         }
-            //     }
-            // }
-            // header("Location:recap.php");
-            // break;
             if (isset($_SESSION['products'][$index])) {
                 if ($_SESSION['products'][$index]['qtt'] > 1) {
                     $_SESSION['products'][$index]['qtt']--;
@@ -62,12 +62,6 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                 }
             }
             header("Location:recap.php");
-            break;
+            exit;
     }
 }
-
-header("Location:index.php");
-// echo "<SCRIPT type='text/javascript'>";
-// echo "window.location.href='index.php';";
-// echo "window.alert('szss');";
-// echo "</SCRIPT>";

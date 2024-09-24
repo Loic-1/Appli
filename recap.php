@@ -32,6 +32,8 @@ session_start();
             "<th>Prix</th>",
             "<th>Quantité</th>",
             "<th>Total</th>",
+            "<th>Description</th>",
+            "<th>Dlt</th>",
             "</tr>",
             "</thead>",
             "<tbody>";
@@ -44,6 +46,7 @@ session_start();
                 "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                 '<td class="qtt_changer"><a href="traitement.php?action=up-qtt&id=' . $index . '"><i class="fa-solid fa-plus"></i></a>' . $product['qtt'] . '<a href="traitement.php?action=down-qtt&id=' . $index . '"><i class="fa-solid fa-minus"></i></a></td>',
                 "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
+                "<td>" . $product['description'] . "</td>",
                 '<td><a href="traitement.php?action=delete&id=' . $index . '"><i class="fa-solid fa-trash"></i></a></td>',
                 "</tr>";
                 $totalGeneral += $product['total'];
@@ -51,10 +54,10 @@ session_start();
             }
             echo        "<tr>",
             "<td colspan=4>Total général : </td>",
-            "<td><strong>" . number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€</strong></td>",
+            "<td colspan=3><strong>" . number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€</strong></td>",
             "</tr>",
             "<tr>",
-            "<td colspan=6>Produits dans le panier : $totalProduits</td>", //Produits dans le panier : $totalProduits
+            "<td colspan=7>Produits dans le panier : $totalProduits</td>", //Produits dans le panier : $totalProduits
             "</tr>",
             "</tbody>",
             "</table>";
@@ -74,8 +77,7 @@ session_start();
         -->
         <div class="clear_container">
             <a href="traitement.php?action=clear" class="clear">
-                <i class="fa-solid fa-trash"></i>
-                <p>Clear Order</p>
+                Clear Order
             </a>
         </div>
     </div>

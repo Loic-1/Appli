@@ -16,33 +16,40 @@
         if (isset($_SESSION['message'])) {
             echo '<div id="info-message">' . $_SESSION['message'] . '</div>';
             unset($_SESSION['message']);
-            // echo "<script>",
-            // 'alert('.$_SESSION['message'].');',
-            // "</script>";
         }
         ?>
         <div class="forms">
             <div title="Tooltip">
                 <h1>Ajouter un produit</h1>
             </div>
-            <form action="traitement.php" method="post" class="main_forms">
+            <form action="traitement.php?action=add" method="post" class="main_forms" enctype="multipart/form-data"> <!-- enctype -->
                 <p>
                     <label>
                         Nom du produit :
-                        <input type="text" name="name">
+                        <input type="text" name="name" class="color">
                     </label>
                 </p>
                 <p>
                     <label>
                         Prix du produit :
-                        <input type="number" step="any" name="price">
+                        <input type="number" step="any" name="price" min="0" class="color">
                     </label>
                 </p>
                 <p>
                     <label>
                         Quantité désirée :
-                        <input type="number" name="qtt" value="1">
+                        <input type="number" name="qtt" value="1" min="0" class="color">
                     </label>
+                </p>
+                <p>
+                    <label for="description">
+                        Description
+                    </label>
+                    <textarea name="description" id="description" class="color"></textarea><!--color-->
+                </p>
+                <p>
+                    <label for="photo">Photo</label>
+                    <input type="file" name="photo">
                 </p>
                 <p>
                     <input type="submit" name="submit" value="Ajouter le produit" class="submit">
@@ -58,7 +65,7 @@
             var item = document.getElementById('info-message')
             item.parentNode.removeChild(item); 
             */
-        }, 10000);
+        }, 5000);
     </script>
 </body>
 

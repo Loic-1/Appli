@@ -9,8 +9,8 @@ body {
   background-color: aquamarine;
 }
 
-.body{
-    position: relative;
+.body {
+  position: relative;
 }
 
 a,
@@ -62,16 +62,16 @@ a:hover {
   row-gap: 1rem;
 }
 
-input {
+.color {
   height: 25px;
   background-color: aqua;
   border: 1px solid rgb(30, 207, 207);
 }
 
-#info-message{
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
+#info-message {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
 }
 
 /*recap.php*/
