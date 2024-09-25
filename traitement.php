@@ -36,17 +36,13 @@ if (isset($_GET['action'])) {
                         //$file = 5f586bf96dcd38.73540086.jpg
 
                         move_uploaded_file($tmpName, './upload/' . $file);
-
-                        echo "Image enregistrée";
-                    } else {
-                        echo "Une erreur est survenue";
                     }
                 }
 
                 // PHOTO
                 // 
 
-                if ($name && $price && $qtt && $description) {
+                if ($name && $price && $qtt && $description && $file) {
                     $product = [
                         "nameP" => $nameP,
                         "price" => $price,
@@ -72,7 +68,6 @@ if (isset($_GET['action'])) {
         case "delete":
             if (isset($_SESSION['products'][$index])) { //isset() regarde si une variable est déclarée et non NULL
                 unset($_SESSION['products'][$index]);
-                unlink($_FILES['file'][$file]);
             }
 
             header("Location:recap.php");

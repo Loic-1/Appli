@@ -48,7 +48,7 @@ session_start();
                 '<td class="qtt_changer"><a href="traitement.php?action=up-qtt&id=' . $index . '"><i class="fa-solid fa-plus"></i></a>' . $product['qtt'] . '<a href="traitement.php?action=down-qtt&id=' . $index . '"><i class="fa-solid fa-minus"></i></a></td>',
                 "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                 "<td>" . $product['description'] . "</td>",
-                "<td>" . "<img src=" . "upload/" . $product['file'] . " width='300px'>" . "</td>",
+                "<td>" . "<img border='1' style='border-radius: 5px;' src=" . "upload/" . $product['file'] . " width='300px'>" . "</td>",
                 '<td><a href="traitement.php?action=delete&id=' . $index . '"><i class="fa-solid fa-trash"></i></a></td>',
                 "</tr>";
                 $totalGeneral += $product['total'];
@@ -68,20 +68,10 @@ session_start();
         ?>
         <div class="clear_container">
             <a href="traitement.php?action=clear" class="clear">
+                <i class="fa-solid fa-trash"></i>
                 Clear Order
             </a>
         </div>
-
-        <!-- FONCTIONNE -->
-        <?php
-        // require './bdd.php';
-        // $req = $db->query('SELECT name FROM file');
-        // while ($data = $req->fetch()) {
-        //     echo "<img src='./upload/" . $data['name'] . "' width='300px' ><br>";
-        // }
-        ?>
-
-
     </div>
 </body>
 
