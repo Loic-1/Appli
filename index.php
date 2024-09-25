@@ -12,51 +12,57 @@
 <body>
     <?php require_once('header.php'); ?>
     <div class="body">
+        <div class="body-index">
 
-        <?php
-        session_start();
-        if (isset($_SESSION['message'])) {
-            echo '<div id="info-message">' . $_SESSION['message'] . '</div>';
-            unset($_SESSION['message']);
-        }
-        ?>
-        <div class="forms">
-            <div title="Tooltip">
-                <h1>Ajouter un produit</h1>
+            <?php
+            session_start();
+            if (isset($_SESSION['message'])) {
+                echo '<div id="info-message">' . $_SESSION['message'] . '</div>';
+                unset($_SESSION['message']);
+            }
+            // elseif (isset($_SESSION['messageN'])){
+            //     echo '<div id="info-message">' . $_SESSION['messageN'] . '</div>';
+            //     unset($_SESSION['messageN']);
+            // }
+            ?>
+            <div class="forms">
+                <div title="Tooltip">
+                    <h1>Ajouter un produit</h1>
+                </div>
+                <form action="traitement.php?action=add" method="post" class="main_forms" enctype="multipart/form-data"> <!-- enctype -->
+                    <p>
+                        <label>
+                            Nom du produit :
+                            <input type="text" name="nameP" class="color">
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            Prix du produit :
+                            <input type="number" step="any" name="price" min="0" class="color">
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            Quantité désirée :
+                            <input type="number" name="qtt" value="1" min="0" class="color">
+                        </label>
+                    </p>
+                    <p>
+                        <label for="description">
+                            Description :
+                        </label>
+                        <textarea rows="1" name="description" id="description" class="color"></textarea><!--color-->
+                    </p>
+                    <p>
+                        <label for="file">Photo</label>
+                        <input type="file" name="file">
+                    </p>
+                    <p>
+                        <input type="submit" name="submit" value="Ajouter le produit" class="submit" class="color">
+                    </p>
+                </form>
             </div>
-            <form action="traitement.php?action=add" method="post" class="main_forms" enctype="multipart/form-data"> <!-- enctype -->
-                <p>
-                    <label>
-                        Nom du produit :
-                        <input type="text" name="nameP" class="color">
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Prix du produit :
-                        <input type="number" step="any" name="price" min="0" class="color">
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Quantité désirée :
-                        <input type="number" name="qtt" value="1" min="0" class="color">
-                    </label>
-                </p>
-                <p>
-                    <label for="description">
-                        Description
-                    </label>
-                    <textarea name="description" id="description" class="color"></textarea><!--color-->
-                </p>
-                <p>
-                    <label for="file">Photo</label>
-                    <input type="file" name="file">
-                </p>
-                <p>
-                    <input type="submit" name="submit" value="Ajouter le produit" class="submit" class="color">
-                </p>
-            </form>
         </div>
     </div>
 

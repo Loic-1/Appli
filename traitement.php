@@ -54,6 +54,7 @@ if (isset($_GET['action'])) {
 
                     $_SESSION['products'][] = $product;
                     $_SESSION['message'] = "Le produit a été ajouté avec succès!!";
+                    // $_SESSION['messageN'] = "Il semble que quelque chose se soit mal passé!!";
                 }
 
                 header("Location:index.php");

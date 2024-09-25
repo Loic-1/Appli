@@ -1,0 +1,13 @@
+*
+
+!upload/*
+
+!.gitignore
+!bdd.php
+!file.sql
+!header.php
+!index.php
+!recap.php
+!style.css
+!test.js
+!traitement.php
