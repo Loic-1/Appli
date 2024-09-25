@@ -17,9 +17,9 @@ if (isset($_GET['action'])) {
                 require './bdd.php';
 
                 if (isset($_FILES['file'])) {
-                    $tmpName = $_FILES['file']['tmp_name']; //path to file
-                    $name = $_FILES['file']['name']; //name (cheese.jpeg)
-                    $size = $_FILES['file']['size']; //in bytes
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $name = $_FILES['file']['name'];
+                    $size = $_FILES['file']['size'];
                     $error = $_FILES['file']['error'];
 
                     $tabExtension = explode('.', $name);
@@ -37,9 +37,6 @@ if (isset($_GET['action'])) {
 
                         move_uploaded_file($tmpName, './upload/' . $file);
 
-                        $req = $db->prepare('INSERT INTO file (name) VALUES (?)');
-                        $req->execute([$file]);
-
                         echo "Image enregistrée";
                     } else {
                         echo "Une erreur est survenue";
@@ -56,6 +53,7 @@ if (isset($_GET['action'])) {
                         "qtt" => $qtt,
                         "total" => $price * $qtt,
                         "description" => $description,
+                        "file" => $file,
                     ];
 
                     $_SESSION['products'][] = $product;
