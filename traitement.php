@@ -7,7 +7,7 @@ if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case "add":
             if (isset($_POST['submit'])) {
-                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $nameP = filter_input(INPUT_POST, "nameP", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
                 $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -17,9 +17,9 @@ if (isset($_GET['action'])) {
                 require './bdd.php';
 
                 if (isset($_FILES['file'])) {
-                    $tmpName = $_FILES['file']['tmp_name'];
-                    $name = $_FILES['file']['name'];
-                    $size = $_FILES['file']['size'];
+                    $tmpName = $_FILES['file']['tmp_name']; //path to file
+                    $name = $_FILES['file']['name']; //name (cheese.jpeg)
+                    $size = $_FILES['file']['size']; //in bytes
                     $error = $_FILES['file']['error'];
 
                     $tabExtension = explode('.', $name);
@@ -51,7 +51,7 @@ if (isset($_GET['action'])) {
 
                 if ($name && $price && $qtt && $description) {
                     $product = [
-                        "name" => $name,
+                        "nameP" => $nameP,
                         "price" => $price,
                         "qtt" => $qtt,
                         "total" => $price * $qtt,
@@ -74,6 +74,7 @@ if (isset($_GET['action'])) {
         case "delete":
             if (isset($_SESSION['products'][$index])) { //isset() regarde si une variable est déclarée et non NULL
                 unset($_SESSION['products'][$index]);
+                unlink($_FILES['file'][$file]);
             }
 
             header("Location:recap.php");

@@ -75,6 +75,7 @@ a:hover {
 }
 
 /*recap.php*/
+
 table,
 td,
 th {
@@ -96,11 +97,6 @@ th {
   padding: 1rem;
   text-align: center;
 }
-
-/* .qtt_changer{
-    display: flex;
-    justify-content: space-between;
-} */
 
 .pas_de_produit {
   text-align: center;

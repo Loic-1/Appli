@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter produit</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
 </head>
 
 <body>
@@ -26,25 +27,25 @@
             <form action="traitement.php?action=add" method="post" class="main_forms" enctype="multipart/form-data"> <!-- enctype -->
                 <p>
                     <label>
-                        Nom du produit : *
-                        <input type="text" name="name" class="color">
+                        Nom du produit :
+                        <input type="text" name="nameP" class="color">
                     </label>
                 </p>
                 <p>
                     <label>
-                        Prix du produit : *
+                        Prix du produit :
                         <input type="number" step="any" name="price" min="0" class="color">
                     </label>
                 </p>
                 <p>
                     <label>
-                        Quantité désirée : *
+                        Quantité désirée :
                         <input type="number" name="qtt" value="1" min="0" class="color">
                     </label>
                 </p>
                 <p>
                     <label for="description">
-                        Description *
+                        Description
                     </label>
                     <textarea name="description" id="description" class="color"></textarea><!--color-->
                 </p>
@@ -55,7 +56,6 @@
                 <p>
                     <input type="submit" name="submit" value="Ajouter le produit" class="submit" class="color">
                 </p>
-                <p>Les champs avec * doivent obligatoirement être remplis.</p>
             </form>
         </div>
     </div>
@@ -70,6 +70,7 @@
             */
         }, 5000);
     </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
 </body>
 
 </html>
